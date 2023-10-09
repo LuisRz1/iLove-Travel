@@ -1,4 +1,6 @@
 package upao.pe.edu.iLoveTravel.controllers;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import upao.pe.edu.iLoveTravel.models.User;
 import upao.pe.edu.iLoveTravel.services.UserService;
@@ -15,19 +17,27 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @GetMapping
     private List<User> getAllUsers(){
         return userService.getAllUsers();
     }
 
-    @GetMapping("/{email}")
-    public List<User> getUserByEmail(@PathVariable String email){
-        return userService.getUserByEmail(email);
-    }
     @PostMapping
     public void addUser(@RequestBody User user){
         userService.addUser(user);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse> login(@RequestParam String email, @RequestParam String password) {
+        User user = userService.verifyAccount(email, password);
+
+        if (user != null) {
+            String comment = "Credenciales validas";
+            ApiResponse res = new ApiResponse(comment, null);
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
 }

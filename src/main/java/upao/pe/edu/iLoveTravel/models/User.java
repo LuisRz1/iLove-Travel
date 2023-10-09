@@ -1,8 +1,10 @@
 package upao.pe.edu.iLoveTravel.models;
 
+import ch.qos.logback.core.net.SMTPAppenderBase;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
@@ -13,22 +15,30 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
+    @Getter
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userid;
+    @Getter
     @Column (name = "firs_name")
     private String firstName;
+    @Getter
     @Column (name = "last_name")
     private String lastName;
+    @Getter
     @Column (name = "email")
     private String email;
+    @Getter
     @Column (name = "password")
     private String password;
+    @Getter
     @Column (name = "nationality")
     private String nationality;
+    @Getter
     @Column (name = "birthdate")
     private LocalDate birthdate;
+    @Getter
     @Column (name = "registration_date")
     private LocalDate registrationDate;
 
@@ -95,4 +105,5 @@ public class User {
     public void setRegistrationDate(LocalDate registrationDate) {
         this.registrationDate = registrationDate;
     }
+
 }
