@@ -1,11 +1,9 @@
 package upao.pe.edu.iLoveTravel.repositories;
 
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import upao.pe.edu.iLoveTravel.models.User;
+import upao.pe.edu.iLoveTravel.models.ArticleBlock;
 
 @Repository
-public interface UserRespository extends JpaRepository<User, Long> {
-
+public interface ArticleBlockRespository extends JpaRepository<ArticleBlock, Long> {
 }
