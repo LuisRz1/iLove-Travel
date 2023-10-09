@@ -2,10 +2,10 @@ package upao.pe.edu.iLoveTravel.repositories;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 import upao.pe.edu.iLoveTravel.models.User;
 
-@Repository
-public interface UserRespository extends JpaRepository<User, Long> {
+import java.util.List;
 
+public interface UserRepository extends JpaRepository<User, String> {
+    List<User> findByEmail(String email);
 }

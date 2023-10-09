@@ -1,36 +1,31 @@
 package upao.pe.edu.iLoveTravel.services;
-import jakarta.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 import upao.pe.edu.iLoveTravel.models.User;
-import upao.pe.edu.iLoveTravel.repositories.UserRespository;
+import upao.pe.edu.iLoveTravel.repositories.UserRepository;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 @Service
-@Transactional
 public class UserService {
-    private final UserRespository userRespository;
+    private final UserRepository userRepository;
 
-    public UserService(UserRespository userRespository) {
-        this.userRespository = userRespository;
+    public UserService(UserRepository userRepository) {
+
+        this.userRepository = userRepository;
     }
 
-    public List<User> getAllUsers(){
-        return userRespository.findAll();
+    public List<User> getAllUsers() {
+
+        return userRepository.findAll();
     }
 
-    public Optional<User> getUserById(Long userid){
-        return userRespository.findById(userid);
+    public List<User> getUserByEmail(String email){
+        return userRepository.findByEmail(email);
     }
 
-    public User addUser(User user){
-        return userRespository.save(user);
+    public void addUser(User user){
+        userRepository.save(user);
     }
 
-    public void deleteUserById(Long userid){
-        userRespository.deleteById(userid);
-    }
 }

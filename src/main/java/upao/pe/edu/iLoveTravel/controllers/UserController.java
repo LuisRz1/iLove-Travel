@@ -4,6 +4,7 @@ import upao.pe.edu.iLoveTravel.models.User;
 import upao.pe.edu.iLoveTravel.services.UserService;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -13,24 +14,21 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
+
     @GetMapping
     private List<User> getAllUsers(){
         return userService.getAllUsers();
     }
 
-    @GetMapping("/{userid}")
-    public User getUserById(@PathVariable Long userid){
-        return userService.getUserById(userid).orElse(new User());
+    @GetMapping("/{email}")
+    public List<User> getUserByEmail(@PathVariable String email){
+        return userService.getUserByEmail(email);
     }
-
     @PostMapping
     public void addUser(@RequestBody User user){
         userService.addUser(user);
     }
 
-    @DeleteMapping("/{userid}")
-    public void deleteUser(@PathVariable Long userid){
-        userService.deleteUserById(userid);
-    }
 }
 
