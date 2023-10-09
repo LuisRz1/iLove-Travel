@@ -7,6 +7,7 @@ import upao.pe.edu.iLoveTravel.models.User;
 import upao.pe.edu.iLoveTravel.services.UserService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -39,12 +40,14 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse> login(@RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<ApiResponse> login(@RequestBody Map<String, String> loginRequest) {
+        String email = loginRequest.get("email");
+        String password = loginRequest.get("password");
         User user = userService.verifyAccount(email, password);
 
         if (user != null) {
-            String comment = "Credenciales validas";
-            ApiResponse res = new ApiResponse(comment, null);
+            String comment = "Credenciales validas: " + user.getFirstName();
+            ApiResponse res = new ApiResponse(comment, user);
             return new ResponseEntity<>(res, HttpStatus.OK);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
