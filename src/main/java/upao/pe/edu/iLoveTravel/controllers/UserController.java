@@ -2,7 +2,6 @@ package upao.pe.edu.iLoveTravel.controllers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import upao.pe.edu.iLoveTravel.models.ApiResponse;
 import upao.pe.edu.iLoveTravel.models.User;
 import upao.pe.edu.iLoveTravel.services.UserService;
 
@@ -46,7 +45,7 @@ public class UserController {
         User user = userService.verifyAccount(email, password);
 
         if (user != null) {
-            String comment = "Credenciales validas: " + user.getFirstName();
+            String comment = "Sesión Iniciada, Bienvenido -> " + user.getFirstName() + user.getLastName();
             ApiResponse res = new ApiResponse(comment, user);
             return new ResponseEntity<>(res, HttpStatus.OK);
         } else {

@@ -1,4 +1,6 @@
-package upao.pe.edu.iLoveTravel.models;
+package upao.pe.edu.iLoveTravel.controllers;
+
+import upao.pe.edu.iLoveTravel.models.User;
 
 public class ApiResponse {
 
