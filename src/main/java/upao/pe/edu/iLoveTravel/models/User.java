@@ -21,25 +21,25 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userid;
     @Getter
-    @Column (name = "firs_name")
+    @Column(name = "firs_name")
     private String firstName;
     @Getter
-    @Column (name = "last_name")
+    @Column(name = "last_name")
     private String lastName;
     @Getter
-    @Column (name = "email")
+    @Column(name = "email")
     private String email;
     @Getter
-    @Column (name = "password")
+    @Column(name = "password")
     private String password;
     @Getter
-    @Column (name = "nationality")
+    @Column(name = "nationality")
     private String nationality;
     @Getter
-    @Column (name = "birthdate")
+    @Column(name = "birthdate")
     private LocalDate birthdate;
     @Getter
-    @Column (name = "registration_date")
+    @Column(name = "registration_date")
     private LocalDate registrationDate;
 
     public Long getUserid() {
@@ -47,6 +47,7 @@ public class User {
     }
 
     public void setUserid(Long userid) {
+
         this.userid = userid;
     }
 

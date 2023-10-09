@@ -6,7 +6,6 @@ import upao.pe.edu.iLoveTravel.repositories.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class UserService{
@@ -16,12 +15,20 @@ public class UserService{
         this.userRepository = userRepository;
     }
 
-    public List<User> getAllUsers() {
+    public List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
-    public void addUser(User user){
-        userRepository.save(user);
+    public Optional<User> getUserById(Long userid){
+        return userRepository.findById(userid);
+    }
+
+    public User addUser(User user){
+        return userRepository.save(user);
+    }
+
+    public void deleteUserById(Long userid){
+        userRepository.deleteById(userid);
     }
 
     public User verifyAccount(String email, String password) {

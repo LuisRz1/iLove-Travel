@@ -2,6 +2,7 @@ package upao.pe.edu.iLoveTravel.controllers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import upao.pe.edu.iLoveTravel.models.ApiResponse;
 import upao.pe.edu.iLoveTravel.models.User;
 import upao.pe.edu.iLoveTravel.services.UserService;
 
@@ -22,9 +23,19 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @GetMapping("/{userid}")
+    public User getUserById(@PathVariable Long userid){
+        return userService.getUserById(userid).orElse(new User());
+    }
+
     @PostMapping
     public void addUser(@RequestBody User user){
         userService.addUser(user);
+    }
+
+    @DeleteMapping("/{userid}")
+    public void deleteUser(@PathVariable Long userid){
+        userService.deleteUserById(userid);
     }
 
     @PostMapping("/login")
