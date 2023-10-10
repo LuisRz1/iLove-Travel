@@ -2,12 +2,12 @@ package upao.pe.edu.iLoveTravel.controllers;
 
 import upao.pe.edu.iLoveTravel.models.User;
 
-public class ApiResponse {
+public class ApiComment {
 
     private String comment;
     private User user;
 
-    public ApiResponse(String comment, User user) {
+    public ApiComment(String comment, User user) {
         this.comment = comment;
         this.user = user;
     }

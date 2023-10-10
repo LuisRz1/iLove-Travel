@@ -39,14 +39,14 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse> login(@RequestBody Map<String, String> loginRequest) {
+    public ResponseEntity<ApiComment> login(@RequestBody Map<String, String> loginRequest) {
         String email = loginRequest.get("email");
         String password = loginRequest.get("password");
         User user = userService.verifyAccount(email, password);
 
         if (user != null) {
             String comment = "Sesión Iniciada, Bienvenido -> " + user.getFirstName() + user.getLastName();
-            ApiResponse res = new ApiResponse(comment, user);
+            ApiComment res = new ApiComment(comment, user);
             return new ResponseEntity<>(res, HttpStatus.OK);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
